@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include <QQmlComponent>
 
+#include "gpxfilepositionsource.h"
 #include "devicelocation.h"
 #include "gpsspeeddata.h"
 
@@ -10,7 +11,12 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    DeviceLocation *location = new DeviceLocation(&app);
+    QGeoPositionInfoSource *source = nullptr;
+    if(QCoreApplication::arguments().size() > 2 && QCoreApplication::arguments().at(1) == "--testSource") {
+        source = new GpxFilePositionSource(QCoreApplication::arguments().at(2), &app);
+    }
+
+    DeviceLocation *location = new DeviceLocation(&app, source);
     GPSSpeedData *speedData = new GPSSpeedData(&app);
 
 
@@ -20,8 +26,10 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     engine.rootContext()->setContextProperty("spd", speedData);
-    QQmlComponent component(&engine, QUrl::fromLocalFile("SpeedItem.qml"));
-    component.create();
+    QQmlComponent spdComponent(&engine, QUrl::fromLocalFile("SpeedItem.qml"));
+    QQmlComponent avgSpdComponent(&engine, QUrl::fromLocalFile("AvgSpeedItem.qml"));
+    spdComponent.create();
+    avgSpdComponent.create();
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

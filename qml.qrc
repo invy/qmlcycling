@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>SpeedItem.qml</file>
+        <file>AvgSpeedItem.qml</file>
     </qresource>
 </RCC>

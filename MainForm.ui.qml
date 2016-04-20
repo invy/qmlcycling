@@ -12,10 +12,25 @@ Rectangle {
         anchors.fill: parent
     }
 
-    SpeedItem {
-        anchors.centerIn: parent
-//        text: "Hello World on the Android"
-        anchors.fill: parent
+    Rectangle {
+        id: spdItem
+        x: 0
+        y: 0
+        height:parent.height
+        width: parent.width/2
+        SpeedItem {
+            anchors.fill: parent
+        }
+    }
+    Rectangle {
+        id: avgSpedItem
+        x: parent.width/2
+        y: 0
+        height:parent.height
+        width:parent.width/2
+        AvgSpeedItem {
+            anchors.fill: parent
+        }
     }
 
 }

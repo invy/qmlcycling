@@ -8,11 +8,11 @@ Rectangle {
     radius: 10
     Text {
         anchors.centerIn: parent
-        text: spd.speed + " km/h"   // invokes GPSSpeedData::speed() to get this value
+        text: spd.avgSpeed + " km/h"   // invokes GPSSpeedData::speed() to get this value
         color: "white"
         scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
         Component.onCompleted: {
-            spd.author = "n.a."  // invokes Message::setSpeed()
+            spd.avgSpeed = "n.a."  // invokes Message::setSpeed()
         }
     }
 }

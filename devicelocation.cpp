@@ -4,15 +4,19 @@
 #include <QDebug>
 #include "devicelocation.h"
 
-DeviceLocation::DeviceLocation(QObject *parent) : QObject(parent)
+DeviceLocation::DeviceLocation(QObject *parent, QGeoPositionInfoSource *source) : QObject(parent)
 {
-    QGeoPositionInfoSource *source = QGeoPositionInfoSource::createDefaultSource(this);
+    if(!source)
+        m_source = QGeoPositionInfoSource::createDefaultSource(this);
+    else
+        m_source = source;
+
     qDebug() << "available sources: " << QGeoPositionInfoSource::availableSources();
-    if (source) {
-        qDebug() << "supported methods: " << source->supportedPositioningMethods();
-        connect(source, SIGNAL(positionUpdated(QGeoPositionInfo)),
+    if (m_source) {
+        qDebug() << "supported methods: " << m_source->supportedPositioningMethods();
+        connect(m_source, SIGNAL(positionUpdated(QGeoPositionInfo)),
                 this, SLOT(positionUpdated(QGeoPositionInfo)));
-        source->requestUpdate(1000);
+        m_source->startUpdates(); //requestUpdate(1000);
     }
 }
 
