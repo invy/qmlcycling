@@ -4,11 +4,11 @@
 #include <QQmlComponent>
 
 #include "gpxfilepositionsource.h"
-#include "devicelocation.h"
-#include "gpsspeeddata.h"
+#include "cyclingcomputer.h"
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
     QGeoPositionInfoSource *source = nullptr;
@@ -16,20 +16,20 @@ int main(int argc, char *argv[])
         source = new GpxFilePositionSource(QCoreApplication::arguments().at(2), &app);
     }
 
-    DeviceLocation *location = new DeviceLocation(&app, source);
-    GPSSpeedData *speedData = new GPSSpeedData(&app);
-
-
-    QObject::connect(location,  &DeviceLocation::locationUpdated,
-                     speedData, &GPSSpeedData::locationUpdated);
+    CyclingComputer *cc = new CyclingComputer(source, &app);
 
     QQmlApplicationEngine engine;
 
-    engine.rootContext()->setContextProperty("spd", speedData);
+    engine.rootContext()->setContextProperty("spd", cc->m_speedData);
+    engine.rootContext()->setContextProperty("slope", cc->m_slopeData);
     QQmlComponent spdComponent(&engine, QUrl::fromLocalFile("SpeedItem.qml"));
     QQmlComponent avgSpdComponent(&engine, QUrl::fromLocalFile("AvgSpeedItem.qml"));
+    QQmlComponent slopeComponent(&engine, QUrl::fromLocalFile("SlopeItem.qml"));
+    QQmlComponent riderSettingsComponent(&engine, QUrl::fromLocalFile("RiderSettingsItem.qml"));
     spdComponent.create();
     avgSpdComponent.create();
+    slopeComponent.create();
+    riderSettingsComponent.create();
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

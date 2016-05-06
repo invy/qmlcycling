@@ -6,7 +6,10 @@ CONFIG += c++11
 SOURCES += main.cpp \
     devicelocation.cpp \
     gpsspeeddata.cpp \
-    gpxfilepositionsource.cpp
+    gpxfilepositionsource.cpp \
+    slopedata.cpp \
+    mathutils.cpp \
+    cyclingcomputer.cpp
 
 RESOURCES += qml.qrc
 
@@ -19,6 +22,9 @@ include(deployment.pri)
 HEADERS += \
     devicelocation.h \
     gpsspeeddata.h \
-    gpxfilepositionsource.h
+    gpxfilepositionsource.h \
+    slopedata.h \
+    mathutils.h \
+    cyclingcomputer.h
 
 DISTFILES +=

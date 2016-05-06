@@ -87,9 +87,8 @@ QQueue<QGeoPositionInfo> GpxFilePositionSource::readGpx() {
                             break;
                         }
                     }
-                    QGeoCoordinate coordinate(latitude, longitude);
+                    QGeoCoordinate coordinate(latitude, longitude, altitude);
                     QGeoPositionInfo info(coordinate, timestamp);
-                    coordinate.setAltitude(altitude);
                     info.setAttribute(QGeoPositionInfo::GroundSpeed, speed);
                     if (info.isValid()) {
                         posList.push_back(info);

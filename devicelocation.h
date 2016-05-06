@@ -10,7 +10,7 @@ class DeviceLocation : public QObject
 {
     Q_OBJECT
 public:
-    explicit DeviceLocation(QObject *parent = 0, QGeoPositionInfoSource *source = nullptr);
+    explicit DeviceLocation(QGeoPositionInfoSource *source = nullptr, QObject *parent = 0);
 
 signals:
     void locationUpdated(const DeviceLocation &location);

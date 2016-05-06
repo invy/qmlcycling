@@ -10,9 +10,9 @@ Rectangle {
         anchors.centerIn: parent
         text: spd.avgSpeed + " km/h"   // invokes GPSSpeedData::speed() to get this value
         color: "white"
-        scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
+        scale: (paintedWidth < parent.width && parent.width > 0 && paintedWidth > 0) ? (parent.width / paintedWidth) : (paintedWidth / parent.width)
         Component.onCompleted: {
-            spd.avgSpeed = "n.a."  // invokes Message::setSpeed()
+            spd.avgSpeed = "n.a."  // invokes Message::setAvgSpeed()
         }
     }
 }
