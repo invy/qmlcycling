@@ -4,7 +4,8 @@ CyclingComputer::CyclingComputer(QGeoPositionInfoSource *posSource, QObject *par
     : QObject(parent),
     m_location(new DeviceLocation(posSource, this)),
     m_speedData(new GPSSpeedData(this)),
-    m_slopeData(new SlopeData(this))
+    m_slopeData(new SlopeData(this)),
+    m_riderData(new RiderData(this))
 {
     QObject::connect(m_location,  &DeviceLocation::locationUpdated,
                      this, &CyclingComputer::locationUpdated);

@@ -49,8 +49,5 @@ void SlopeData::locationUpdated(const DeviceLocation &location) {
     m_previousAltitude = currentAltitude;
     m_smoothedSlopeData = MathUtils::exponentialFilter(m_slopeData, m_previousSlopeData, m_alphaSlope);
     m_previousSlopeData = m_smoothedSlopeData;
-
-    this->setSlope(QString::asprintf("%.02f", m_slopeData));
-    this->setSmoothedSlope(QString::asprintf("%.02f", m_smoothedSlopeData));
-
+    emit slopeChanged();
 }

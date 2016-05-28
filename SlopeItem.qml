@@ -9,11 +9,11 @@ Rectangle {
     radius: 10
     Text {
         anchors.centerIn: parent
-        text: slope.smoothedSlope + " %\n(" + slope.slope + ")"   // invokes SlopeData::slope() to get this value
+        text: slope.smoothedSlope.toFixed(2) + " %\n(" + slope.slope.toFixed(2) + ")"   // invokes SlopeData::slope() to get this value
         color: "white"
         scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
         Component.onCompleted: {
-            slope.smoothedSlope = "n.a."  // invokes Message::setSpeed()
+            slope.smoothedSlope = 0.0  // invokes Message::setSpeed()
             slope.alpha = 0.08
             slope.alphaSlope = 0.7
         }

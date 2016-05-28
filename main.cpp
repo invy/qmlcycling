@@ -22,14 +22,17 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("spd", cc->m_speedData);
     engine.rootContext()->setContextProperty("slope", cc->m_slopeData);
+    engine.rootContext()->setContextProperty("riderData", cc->m_riderData);
     QQmlComponent spdComponent(&engine, QUrl::fromLocalFile("SpeedItem.qml"));
     QQmlComponent avgSpdComponent(&engine, QUrl::fromLocalFile("AvgSpeedItem.qml"));
     QQmlComponent slopeComponent(&engine, QUrl::fromLocalFile("SlopeItem.qml"));
     QQmlComponent riderSettingsComponent(&engine, QUrl::fromLocalFile("RiderSettingsItem.qml"));
+    QQmlComponent powerData(&engine, QUrl::fromLocalFile("PowerData.qml"));
     spdComponent.create();
     avgSpdComponent.create();
     slopeComponent.create();
     riderSettingsComponent.create();
+    powerData.create();
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

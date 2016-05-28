@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     gpxfilepositionsource.cpp \
     slopedata.cpp \
     mathutils.cpp \
-    cyclingcomputer.cpp
+    cyclingcomputer.cpp \
+    riderdata.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,6 +26,7 @@ HEADERS += \
     gpxfilepositionsource.h \
     slopedata.h \
     mathutils.h \
-    cyclingcomputer.h
+    cyclingcomputer.h \
+    riderdata.h
 
 DISTFILES +=

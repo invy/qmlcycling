@@ -8,61 +8,39 @@
 class GPSSpeedData : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString speed READ speed WRITE setSpeed NOTIFY speedChanged)
-    Q_PROPERTY(QString smoothedSpeed READ smoothedSpeed WRITE setSmoothedSpeed NOTIFY speedChanged)
-    Q_PROPERTY(QString avgSpeed READ avgSpeed WRITE setAvgSpeed NOTIFY avgSpeedChanged)
+    Q_PROPERTY(qreal speed         READ speed         NOTIFY speedChanged)
+    Q_PROPERTY(qreal smoothedSpeed READ smoothedSpeed NOTIFY speedChanged)
+    Q_PROPERTY(qreal avgSpeed      READ avgSpeed      NOTIFY speedChanged)
+    Q_PROPERTY(qreal deltaT        READ deltaT        NOTIFY speedChanged)
+    Q_PROPERTY(qreal deltaS        READ deltaS        NOTIFY speedChanged)
 public:
     explicit GPSSpeedData(QObject *parent = 0);
 
-    void setSpeed(const QString &s) {
-        this->m_speed = s;
-        emit speedChanged();
-    }
-    void setSmoothedSpeed(const QString &s) {
-        this->m_smoothedSpeed = s;
-        emit speedChanged();
-    }
-    void setAvgSpeed(const QString &s) {
-        this->m_avgSpeed = s;
-        emit avgSpeedChanged();
-    }
+    qreal deltaT() const;
+    qreal deltaS() const;
 
-    QString speed() const {
-        return m_speed;
-    }
-    QString smoothedSpeed() const {
-        return m_smoothedSpeed;
-    }
+    qreal speed() const;
+    qreal smoothedSpeed() const;
 
-    QString avgSpeed() const {
-        return m_avgSpeed;
-    }
-
+    qreal avgSpeed() const;
 
 public:
-    qreal getSpeedData() {
-        return m_speedData;
-    }
-
-public:
-    void locationUpdated(const DeviceLocation &location);
+    qreal getSpeedData() const;
 
 signals:
     void speedChanged();
-    void avgSpeedChanged();
 
 public slots:
+    void locationUpdated(const DeviceLocation &location);
 
 private:
-    QString m_speed;
-    QString m_avgSpeed;
-    QString m_smoothedSpeed;
-
     qreal m_alpha;
     qreal m_prevSpeedData;
     qreal m_smoothedSpeedData;
     qreal m_speedData;
     qreal m_avgSpeedData;
+    qreal m_deltat;
+    qreal m_deltas;
     unsigned long m_pointsCount;
 };
 

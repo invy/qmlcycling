@@ -7,6 +7,7 @@
 #include "devicelocation.h"
 #include "gpsspeeddata.h"
 #include "slopedata.h"
+#include "riderdata.h"
 
 class CyclingComputer : public QObject
 {
@@ -23,6 +24,7 @@ public:
     DeviceLocation *m_location;
     GPSSpeedData *m_speedData;
     SlopeData *m_slopeData;
+    RiderData *m_riderData;
 
 };
 

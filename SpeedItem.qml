@@ -9,11 +9,8 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        text: spd.smoothedSpeed + " km/h\n(" + spd.speed + ")"   // invokes GPSSpeedData::speed() to get this value
+        text: spd.smoothedSpeed.toFixed(2) + " km/h\n(" + spd.speed.toFixed(2) + ")"   // invokes GPSSpeedData::speed() to get this value
         color: "white"
         scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
-        Component.onCompleted: {
-            spd.author = "n.a."  // invokes Message::setSpeed()
-        }
     }
 }

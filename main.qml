@@ -95,6 +95,15 @@ ApplicationWindow {
                     anchors.fill: parent
                 }
             }
+            Rectangle {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                id: powerItem
+
+                PowerData {
+                    anchors.fill: parent
+                }
+            }
         }
     }
 

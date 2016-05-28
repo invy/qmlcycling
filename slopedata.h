@@ -9,28 +9,19 @@ class SlopeData : public QObject
 {
 
     Q_OBJECT
-    Q_PROPERTY(QString slope READ slope WRITE setSlope NOTIFY slopeChanged)
+    Q_PROPERTY(qreal slope READ slope NOTIFY slopeChanged)
     Q_PROPERTY(qreal alpha READ alpha WRITE setAlpha NOTIFY alphaChanged)
-    Q_PROPERTY(QString smoothedSlope READ smoothedSlope WRITE setSmoothedSlope NOTIFY slopeChanged)
-    Q_PROPERTY(qreal alpha READ alphaSlope WRITE setAlphaSlope NOTIFY alphaSlopeChanged)
+    Q_PROPERTY(qreal smoothedSlope READ smoothedSlope NOTIFY slopeChanged)
+    Q_PROPERTY(qreal alphaSlope READ alphaSlope WRITE setAlphaSlope NOTIFY alphaSlopeChanged)
 
 public:
     explicit SlopeData(QObject *parent = 0);
 
-    void setSlope(const QString &s) {
-        this->m_slope = s;
-        emit slopeChanged();
+    qreal slope() const {
+        return m_slopeData;
     }
-    void setSmoothedSlope(const QString &s) {
-        this->m_smoothedSlope = s;
-        emit slopeChanged();
-    }
-
-    QString slope() const {
-        return m_slope;
-    }
-    QString smoothedSlope() const {
-        return m_smoothedSlope;
+    qreal smoothedSlope() const {
+        return m_smoothedSlopeData;
     }
 
     void setAlpha(const qreal &alpha) {
@@ -68,10 +59,9 @@ public slots:
 private:
     double calculateSlope(double distance, double altitudeDifference, double defaultSlope);
 private:
-    QString m_slope;
-    QString m_smoothedSlope;
     qreal m_slopeData;
     qreal m_smoothedSlopeData;
+
     qreal m_alpha;
     qreal m_alphaSlope;
     qreal m_previousAltitude;
