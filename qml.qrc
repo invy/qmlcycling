@@ -6,5 +6,6 @@
         <file>SlopeItem.qml</file>
         <file>RiderSettingsItem.qml</file>
         <file>PowerData.qml</file>
+        <file>gearratio.js</file>
     </qresource>
 </RCC>

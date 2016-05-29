@@ -61,7 +61,7 @@ ApplicationWindow {
         parent: secondPage
         id: mainView
         anchors.fill: parent
-        color: "#c0c0c0"
+        color: "#101010"
 
         GridLayout {
             columns: 2
@@ -71,6 +71,8 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                color: "black"
+
                 id: spdItem
 
                 SpeedItem {
@@ -80,6 +82,8 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                color: "black"
+
                 id: avgSpedItem
 
                 AvgSpeedItem {
@@ -89,6 +93,8 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                color: "black"
+
                 id: slopeItem
 
                 SlopeItem {
@@ -98,6 +104,8 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                color: "black"
+
                 id: powerItem
 
                 PowerData {
