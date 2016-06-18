@@ -1,5 +1,6 @@
 import QtQuick.Layouts 1.1
-import QtQuick 2.0
+import QtQuick 2.5
+import QtQuick.Controls 1.4
 
 import "gearratio.js" as Logic
 
@@ -62,11 +63,16 @@ Rectangle {
             border.color: "#0020bb"
             border.width: 1
             radius: 10
-            Text {
-                anchors.centerIn: parent
-                text: "70rpm: 39x22\n" + "80rpm: 39x24\n" + "90rpm: 39x26\n" + "100rpm: 39x28\n"
-                color: "white"
-                scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
+
+            ListView {
+                id: gearingList
+                property var gearingArray: Logic.getRatios(spd.speed*1000/3600, 0.335, riderData.smallChainRing, riderData.largeChainRing, riderData.smallestCog, riderData.biggestCog)
+                anchors.fill: parent
+                model: gearingArray
+                delegate: Text {
+                    color: (gearingList.gearingArray[index].rpm >= 80) ? "green" : (gearingList.gearingArray[index].rpm >= 70) ? "yellow" : "red"
+                    text: gearingList.gearingArray[index].rpm + ":    " + gearingList.gearingArray[index].chainRing + "x" + gearingList.gearingArray[index].cog
+                }
             }
         }
     }

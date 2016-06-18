@@ -1,6 +1,7 @@
 import QtQuick.Layouts 1.1
 import QtQuick 2.0
 
+import "powercalc.js" as Logic
 
 Rectangle {
     anchors.fill: parent
@@ -39,19 +40,9 @@ Rectangle {
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text:
-                    // power to counteract gravity
-                    (((spd.deltaS *
-                    slope.smoothedSlope *
-                    9.81 * (riderData.weight + riderData.bikeWeight)) /
-                    (100 * spd.deltaT)) +
-                    // power to counteract aerodynamic drag
-                    (0.5 * rho * Math.pow((spd.smoothedSpeed*1000/3600), 3) * cyclistArea * dragCoefficient)
-                    ).toFixed(2) + " Watts"
+                text: Logic.estimatePower(spd.deltaT, spd.deltaS, spd.smoothedSpeed*1000/3600, slope.smoothedSlope, riderData.weight + riderData.bikeWeight, rho, cyclistArea, dragCoefficient).toFixed(2) + " Watts"
                 color: "white"
                 scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
-                Component.onCompleted: {
-                }
             }
         }
     }

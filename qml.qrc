@@ -7,5 +7,6 @@
         <file>RiderSettingsItem.qml</file>
         <file>PowerData.qml</file>
         <file>gearratio.js</file>
+        <file>powercalc.js</file>
     </qresource>
 </RCC>

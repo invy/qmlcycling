@@ -19,6 +19,10 @@ ApplicationWindow {
         property int riderWeight: 60
         property int bikeWeight: 6
         property int tireWidth: 23
+        property int largeChainRing: 50
+        property int smallChainRing: 34
+        property int smallestCog: 12
+        property int biggestCog: 30
     }
 
     SwipeView {
