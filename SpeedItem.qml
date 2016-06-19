@@ -5,9 +5,10 @@ import QtQuick.Controls 1.4
 import "gearratio.js" as Logic
 
 Rectangle {
+    id: speedItem
     anchors.fill: parent
-    color: "black"
-    border.color: "#0020bb"
+    color: settings.bgColor
+    border.color: settings.borderColor
     border.width: 1
     radius: 10
 
@@ -19,48 +20,50 @@ Rectangle {
         Rectangle {
             Layout.minimumHeight: 40
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: "Speed"
-                color: "white"
+                text: "Speed (km/h)"
+                color: settings.fgColor
+                font.pixelSize: settings.fontSize
             }
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: spd.smoothedSpeed.toFixed(2) + " km/h\n(" + spd.speed.toFixed(2) + " km/h)"   // invokes GPSSpeedData::speed() to get this value
-                color: "white"
+                text: spd.smoothedSpeed.toFixed(2)   // invokes GPSSpeedData::speed() to get this value
+                color: settings.fgColor
                 scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
             }
         }
         Rectangle {
             Layout.minimumHeight: 40
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: "Optimal gears"
-                color: "white"
+                text: "Optimal Gears"
+                color: settings.fgColor
+                font.pixelSize: settings.fontSize
             }
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
 
@@ -70,8 +73,9 @@ Rectangle {
                 anchors.fill: parent
                 model: gearingArray
                 delegate: Text {
-                    color: (gearingList.gearingArray[index].rpm >= 80) ? "green" : (gearingList.gearingArray[index].rpm >= 70) ? "yellow" : "red"
+                    color: (gearingList.gearingArray[index].rpm >= 80) ? "green" : (gearingList.gearingArray[index].rpm >= 70) ? "orange" : "red"
                     text: gearingList.gearingArray[index].rpm + ":    " + gearingList.gearingArray[index].chainRing + "x" + gearingList.gearingArray[index].cog
+                    font.pixelSize: settings.fontSize
                 }
             }
         }

@@ -23,6 +23,13 @@ ApplicationWindow {
         property int smallChainRing: 34
         property int smallestCog: 12
         property int biggestCog: 30
+
+        // style
+        property int fontSize: 17
+        property bool dark: true
+        property string bgColor: "black"
+        property string fgColor: "white"
+        property string borderColor: "#ff471a"
     }
 
     SwipeView {
@@ -65,7 +72,7 @@ ApplicationWindow {
         parent: secondPage
         id: mainView
         anchors.fill: parent
-        color: "#101010"
+        color: settings.bgColor
 
         GridLayout {
             columns: 2
@@ -75,7 +82,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "black"
+                color: settings.bgColor
 
                 id: spdItem
 
@@ -86,7 +93,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "black"
+                color: settings.bgColor
 
                 id: avgSpedItem
 
@@ -97,7 +104,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "black"
+                color: settings.bgColor
 
                 id: slopeItem
 
@@ -108,7 +115,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "black"
+                color: settings.bgColor
 
                 id: powerItem
 

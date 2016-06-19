@@ -4,8 +4,8 @@ import QtQuick 2.0
 
 Rectangle {
     anchors.fill: parent
-    color: "black"
-    border.color: "#0020bb"
+    color: settings.bgColor
+    border.color: settings.borderColor
     border.width: 1
     radius: 10
 
@@ -17,27 +17,28 @@ Rectangle {
         Rectangle {
             Layout.minimumHeight: 40
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: "Slope"
-                color: "white"
+                text: "Slope (%)"
+                color: settings.fgColor
+                font.pixelSize: settings.fontSize
             }
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: slope.smoothedSlope.toFixed(2) + " %\n(" + slope.slope.toFixed(2) + " %)"   // invokes SlopeData::slope() to get this value
-                color: "white"
+                text: slope.smoothedSlope.toFixed(2)
+                color: settings.fgColor
                 scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
                 Component.onCompleted: {
                     slope.alpha = 0.08

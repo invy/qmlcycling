@@ -5,10 +5,11 @@ import "powercalc.js" as Logic
 
 Rectangle {
     anchors.fill: parent
-    color: "black"
-    border.color: "#0020bb"
+    color: settings.bgColor
+    border.color: settings.borderColor
     border.width: 1
     radius: 10
+
     property real cyclistArea: 0.4
     property real rho: 1.2041
     property real dragCoefficient: 1
@@ -21,27 +22,29 @@ Rectangle {
         Rectangle {
             Layout.minimumHeight: 40
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: "Est. Power"
-                color: "white"
+                text: "Est. Power (Watts)"
+                color: settings.fgColor
+                font.pixelSize: settings.fontSize
+
             }
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "black"
-            border.color: "#0020bb"
+            color: settings.bgColor
+            border.color: settings.borderColor
             border.width: 1
             radius: 10
             Text {
                 anchors.centerIn: parent
-                text: Logic.estimatePower(spd.deltaT, spd.deltaS, spd.smoothedSpeed*1000/3600, slope.smoothedSlope, riderData.weight + riderData.bikeWeight, rho, cyclistArea, dragCoefficient).toFixed(2) + " Watts"
-                color: "white"
+                text: Logic.estimatePower(spd.deltaT, spd.deltaS, spd.smoothedSpeed*1000/3600, slope.smoothedSlope, riderData.weight + riderData.bikeWeight, rho, cyclistArea, dragCoefficient).toFixed(2)
+                color: settings.fgColor
                 scale: (paintedWidth < parent.width) ? (parent.width / paintedWidth) : (paintedWidth/parent.width)
             }
         }

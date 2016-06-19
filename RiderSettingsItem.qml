@@ -31,44 +31,87 @@ Item {
             from: 18
             to: 35
         }
-        Label { text: "Large Chain Ring" }
-        SpinBox {
-            id: largeChainRing
-            value: riderData.largeChainRing
-            from: 45
-            to: 58
+        Column {
+            Column {
+                Label { text: "Chain Rings" }
+            }
         }
-        Label { text: "Small Chain Ring" }
-        SpinBox {
-            id: smallChainRing
-            value: riderData.smallChainRing
-            from: 25
-            to: 45
+        Column {
+            Row {
+                SpinBox {
+                    id: largeChainRing
+                    value: riderData.largeChainRing
+                    from: 45
+                    to: 58
+                }
+                SpinBox {
+                    id: smallChainRing
+                    value: riderData.smallChainRing
+                    from: 25
+                    to: 45
+                }
+            }
         }
-        Label { text: "Smallest Cog" }
-        SpinBox {
-            id: smallestCog
-            value: riderData.smallestCog
-            from: 9
-            to: 15
+        Column {
+            Label { text: "Cassette (Cogs)" }
         }
-        Label { text: "Biggest Cog" }
-        SpinBox {
-            id: biggestCog
-            value: riderData.biggestCog
-            from: 18
-            to: 35
+        Column {
+            Row {
+                SpinBox {
+                    id: smallestCog
+                    value: riderData.smallestCog
+                    from: 9
+                    to: 15
+                }
+                SpinBox {
+                    id: biggestCog
+                    value: riderData.biggestCog
+                    from: 18
+                    to: 35
+                }
+            }
         }
-        Button {
-            text: "Update"
-            onClicked: {
-                settings.riderWeight = riderData.weight = riderWeight.value
-                settings.bikeWeight = riderData.bikeWeight = bikeWeight.value
-                settings.tireWidth = riderData.tireWidth = tireWidth.value
-                settings.largeChainRing = riderData.largeChainRing = largeChainRing.value
-                settings.smallChainRing = riderData.smallChainRing = smallChainRing.value
-                settings.smallestCog = riderData.smallestCog = smallestCog.value
-                settings.biggestCog = riderData.biggestCog = biggestCog.value
+        Row {
+            Button {
+                text: "Update"
+                onClicked: {
+                    settings.riderWeight = riderData.weight = riderWeight.value
+                    settings.bikeWeight = riderData.bikeWeight = bikeWeight.value
+                    settings.tireWidth = riderData.tireWidth = tireWidth.value
+                    settings.largeChainRing = riderData.largeChainRing = largeChainRing.value
+                    settings.smallChainRing = riderData.smallChainRing = smallChainRing.value
+                    settings.smallestCog = riderData.smallestCog = smallestCog.value
+                    settings.biggestCog = riderData.biggestCog = biggestCog.value
+                }
+            }
+        }
+        Rectangle { }
+        Column {
+            Row {
+                RadioButton {
+                    checked: settings.dark
+                    text: "Dark Theme"
+                    onClicked: {
+                        settings.fontSize = 17
+                        settings.dark = true
+                        settings.bgColor = "black"
+                        settings.fgColor = "white"
+                        settings = "#ff471a"
+
+                    }
+                }
+                RadioButton {
+                    checked: !settings.dark
+                    text: "Light Theme"
+                    onClicked: {
+                        settings.fontSize = 17
+                        settings.dark = false
+                        settings.bgColor = "white"
+                        settings.fgColor = "black"
+                        settings = "#ff471a"
+
+                    }
+                }
             }
         }
     }
