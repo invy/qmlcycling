@@ -8,7 +8,7 @@ Rectangle {
     color: settings.bgColor
     border.color: settings.borderColor
     border.width: 1
-    radius: 10
+    radius: settings.borderRadius
 
     property real cyclistArea: 0.4
     property real rho: 1.2041
@@ -25,7 +25,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: "Est. Power (Watts)"
@@ -40,7 +40,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: Logic.estimatePower(spd.deltaT, spd.deltaS, spd.smoothedSpeed*1000/3600, slope.smoothedSlope, riderData.weight + riderData.bikeWeight, rho, cyclistArea, dragCoefficient).toFixed(2)

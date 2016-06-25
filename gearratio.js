@@ -21,7 +21,7 @@ var propritize = function(gearing) {
 
 }
 
-var getRatios = function(speed, wheelRadius, smallChainRing, largeChainRing, minSprocket, maxSprocket) {
+var getRatiosForCR = function(speed, wheelRadius, chainRing, minSprocket, maxSprocket) {
 
     var GearsInfo = function(rpm, chainRing, cog) {
         this.rpm = rpm;
@@ -37,23 +37,16 @@ var getRatios = function(speed, wheelRadius, smallChainRing, largeChainRing, min
     if(wheelRpm === 0)
         return [];
 
-
     var gearing = [];
     var i = 0;
 
     for(var r in pedalRpm) {
         var rpm = pedalRpm[r];
-        var cog = getCogForRpm(rpm, wheelRpm, smallChainRing, minSprocket, maxSprocket);
+        var cog = getCogForRpm(rpm, wheelRpm, chainRing, minSprocket, maxSprocket);
         if(cog !== 0) {
-            gearing[i] = new GearsInfo(rpm, smallChainRing, cog);
+            gearing[i] = new GearsInfo(rpm, chainRing, cog);
             ++i;
         }
-        cog = getCogForRpm(rpm, wheelRpm, largeChainRing, minSprocket, maxSprocket);
-        if(cog !== 0) {
-            gearing[i] = new GearsInfo(rpm, largeChainRing, cog);
-            ++i;
-        }
-
     }
 
     return gearing;

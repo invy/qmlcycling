@@ -10,7 +10,7 @@ Rectangle {
     color: settings.bgColor
     border.color: settings.borderColor
     border.width: 1
-    radius: 10
+    radius: settings.borderRadius
 
     GridLayout {
         columns: 1
@@ -23,7 +23,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: "Speed (km/h)"
@@ -37,7 +37,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: spd.smoothedSpeed.toFixed(2)   // invokes GPSSpeedData::speed() to get this value
@@ -51,7 +51,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: "Optimal Gears"
@@ -65,17 +65,51 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
+            GridLayout {
+                columns: 2
+                rows: 1
 
-            ListView {
-                id: gearingList
-                property var gearingArray: Logic.getRatios(spd.speed*1000/3600, 0.335, riderData.smallChainRing, riderData.largeChainRing, riderData.smallestCog, riderData.biggestCog)
                 anchors.fill: parent
-                model: gearingArray
-                delegate: Text {
-                    color: (gearingList.gearingArray[index].rpm >= 80) ? "green" : (gearingList.gearingArray[index].rpm >= 70) ? "orange" : "red"
-                    text: gearingList.gearingArray[index].rpm + ":    " + gearingList.gearingArray[index].chainRing + "x" + gearingList.gearingArray[index].cog
-                    font.pixelSize: settings.fontSize
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: settings.bgColor
+                    border.color: settings.borderColor
+                    border.width: 1
+                    radius: settings.borderRadius
+                        ListView {
+                        id: gearingList
+
+                        property var gearingArray: Logic.getRatiosForCR(spd.speed*1000/3600, 0.335, riderData.largeChainRing, riderData.smallestCog, riderData.biggestCog)
+                        anchors.fill: parent
+                        model: gearingArray
+                        delegate: Text {
+                            color: (gearingList.gearingArray[index].rpm >= 80) ? "green" : (gearingList.gearingArray[index].rpm >= 70) ? "orange" : "red"
+                            text: gearingList.gearingArray[index].rpm + ":    " + gearingList.gearingArray[index].chainRing + "x" + gearingList.gearingArray[index].cog
+                            font.pixelSize: settings.fontSize
+                        }
+                    }
+                }
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: settings.bgColor
+                    border.color: settings.borderColor
+                    border.width: 1
+                    radius: settings.borderRadius
+                        ListView {
+                        id: gearingList1
+
+                        property var gearingArray: Logic.getRatiosForCR(spd.speed*1000/3600, 0.335, riderData.smallChainRing, riderData.smallestCog, riderData.biggestCog)
+                        anchors.fill: parent
+                        model: gearingArray
+                        delegate: Text {
+                            color: (gearingList1.gearingArray[index].rpm >= 80) ? "green" : (gearingList1.gearingArray[index].rpm >= 70) ? "orange" : "red"
+                            text: gearingList1.gearingArray[index].rpm + ":    " + gearingList1.gearingArray[index].chainRing + "x" + gearingList1.gearingArray[index].cog
+                            font.pixelSize: settings.fontSize
+                        }
+                    }
                 }
             }
         }

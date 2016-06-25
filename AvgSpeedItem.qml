@@ -6,7 +6,7 @@ Rectangle {
     color: settings.bgColor
     border.color: settings.borderColor
     border.width: 1
-    radius: 10
+    radius: settings.borderRadius
 
     GridLayout {
         columns: 1
@@ -19,7 +19,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: "Avg. Speed (km/h)"
@@ -33,7 +33,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: spd.avgSpeed.toFixed(2)

@@ -30,6 +30,7 @@ ApplicationWindow {
         property string bgColor: "black"
         property string fgColor: "white"
         property string borderColor: "#ff471a"
+        property int borderRadius: 3
     }
 
     SwipeView {

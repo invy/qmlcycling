@@ -7,7 +7,7 @@ Rectangle {
     color: settings.bgColor
     border.color: settings.borderColor
     border.width: 1
-    radius: 10
+    radius: settings.borderRadius
 
     GridLayout {
         columns: 1
@@ -20,7 +20,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: "Slope (%)"
@@ -34,7 +34,7 @@ Rectangle {
             color: settings.bgColor
             border.color: settings.borderColor
             border.width: 1
-            radius: 10
+            radius: settings.borderRadius
             Text {
                 anchors.centerIn: parent
                 text: slope.smoothedSlope.toFixed(2)
